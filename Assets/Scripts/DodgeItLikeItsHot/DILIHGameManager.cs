@@ -24,7 +24,6 @@ namespace Dodge
         [SerializeField] private GameObject gameOverPanelOne;
         [SerializeField] private GameObject gameOverPanelTwo;
         [SerializeField] private GameObject timePanel;
-        private GameScoreManager gameScoreManager;
         
         // Initialize player movement.
         [Header("Player Controls")]
@@ -44,8 +43,6 @@ namespace Dodge
 
         public void Start()
         {
-            gameScoreManager = GetComponent<GameScoreManager>();
-            //gameScoreManager.enabled = false;
             ShowTitleScreen();
             idleAnimation.enabled = true;
         }
