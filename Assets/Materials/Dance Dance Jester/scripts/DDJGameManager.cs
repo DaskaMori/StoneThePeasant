@@ -69,166 +69,168 @@ public class GameManager : MonoBehaviour
         //creates a list of arrow dirrections
         ArrowSetup();
 
-        //starts the main game function when space is pressed
-        void Update()
+    }
+
+    //starts the main game function when space is pressed
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && gameStarted == false)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && gameStarted == false)
+            OpeningScreen.SetActive(false);
+            gameStarted = true;
+            StartCoroutine(GameTimer());
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && gameStarted)
+        {
+            if (NumberList[listNumber] == 0)
             {
-                OpeningScreen.SetActive(false);
-                gameStarted = true;
-                StartCoroutine(GameTimer());
+                CorrectArrowList[listNumber].SetActive(true);
+                listNumber += 1;
+
+                CurrentJester.SetActive(false);
+                JesterList[0].SetActive(true);
+                CurrentJester = JesterList[0];
+
+                BaseKing.SetActive(true);
+                GunKing.SetActive(false);
+
+                totalCorrectArrows += 1;
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) && gameStarted)
+            else
             {
-                if (NumberList[listNumber] == 0)
-                {
-                    CorrectArrowList[listNumber].SetActive(true);
-                    listNumber += 1;
+                IncorrectArrowList[listNumber].SetActive(true);
+                listNumber += 1;
 
-                    CurrentJester.SetActive(false);
-                    JesterList[0].SetActive(true);
-                    CurrentJester = JesterList[0];
+                CurrentJester.SetActive(false);
+                JesterList[4].SetActive(true);
+                CurrentJester = JesterList[4];
 
-                    BaseKing.SetActive(true);
-                    GunKing.SetActive(false);
-
-                    totalCorrectArrows += 1;
-                }
-
-                else
-                {
-                    IncorrectArrowList[listNumber].SetActive(true);
-                    listNumber += 1;
-
-                    CurrentJester.SetActive(false);
-                    JesterList[4].SetActive(true);
-                    CurrentJester = JesterList[4];
-
-                    BaseKing.SetActive(false);
-                    GunKing.SetActive(true);
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.DownArrow) && gameStarted)
-            {
-                if (NumberList[listNumber] == 1)
-                {
-                    CorrectArrowList[listNumber].SetActive(true);
-                    listNumber += 1;
-
-                    CurrentJester.SetActive(false);
-                    JesterList[1].SetActive(true);
-                    CurrentJester = JesterList[1];
-
-                    BaseKing.SetActive(true);
-                    GunKing.SetActive(false);
-
-                    totalCorrectArrows += 1;
-                }
-
-                else
-                {
-                    IncorrectArrowList[listNumber].SetActive(true);
-                    listNumber += 1;
-
-                    CurrentJester.SetActive(false);
-                    JesterList[4].SetActive(true);
-                    CurrentJester = JesterList[4];
-
-                    BaseKing.SetActive(false);
-                    GunKing.SetActive(true);
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && gameStarted)
-            {
-                if (NumberList[listNumber] == 2)
-                {
-                    CorrectArrowList[listNumber].SetActive(true);
-                    listNumber += 1;
-
-                    CurrentJester.SetActive(false);
-                    JesterList[2].SetActive(true);
-                    CurrentJester = JesterList[2];
-
-                    BaseKing.SetActive(true);
-                    GunKing.SetActive(false);
-
-                    totalCorrectArrows += 1;
-                }
-
-                else
-                {
-                    IncorrectArrowList[listNumber].SetActive(true);
-                    listNumber += 1;
-
-                    CurrentJester.SetActive(false);
-                    JesterList[4].SetActive(true);
-                    CurrentJester = JesterList[4];
-
-                    BaseKing.SetActive(false);
-                    GunKing.SetActive(true);
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.RightArrow) && gameStarted)
-            {
-                if (NumberList[listNumber] == 3)
-                {
-                    CorrectArrowList[listNumber].SetActive(true);
-                    listNumber += 1;
-
-                    CurrentJester.SetActive(false);
-                    JesterList[3].SetActive(true);
-                    CurrentJester = JesterList[3];
-
-                    BaseKing.SetActive(true);
-                    GunKing.SetActive(false);
-
-                    totalCorrectArrows += 1;
-                }
-
-                else
-                {
-                    IncorrectArrowList[listNumber].SetActive(true);
-                    listNumber += 1;
-
-                    CurrentJester.SetActive(false);
-                    JesterList[4].SetActive(true);
-                    CurrentJester = JesterList[4];
-
-                    BaseKing.SetActive(false);
-                    GunKing.SetActive(true);
-                }
-            }
-
-            if (listNumber == 16)
-            {
-                gameStarted = false;
-
-                //player gets one stone/point per correct arrow, minus a penalty of however many seconds after 5
-                wonStones = totalCorrectArrows - (totalSeconds - 5);
-                Debug.Log("Game Over, you win " + wonStones + " stones.");
-
-                foreach (GameObject arrow in ArrowList)
-                {
-                    Destroy(arrow);
-                }
-
-                foreach (GameObject currentCorrectArrow in CorrectArrowList)
-                {
-                    Destroy(arrow);
-                }
-
-                foreach (GameObject currentIncorrectArrow in IncorrectArrowList)
-                {
-                    Destroy(arrow);
-                }
+                BaseKing.SetActive(false);
+                GunKing.SetActive(true);
             }
         }
 
-        IEnumerator GameTimer()
+        if (Input.GetKeyDown(KeyCode.DownArrow) && gameStarted)
+        {
+            if (NumberList[listNumber] == 1)
+            {
+                CorrectArrowList[listNumber].SetActive(true);
+                listNumber += 1;
+
+                CurrentJester.SetActive(false);
+                JesterList[1].SetActive(true);
+                CurrentJester = JesterList[1];
+
+                BaseKing.SetActive(true);
+                GunKing.SetActive(false);
+
+                totalCorrectArrows += 1;
+            }
+
+            else
+            {
+                IncorrectArrowList[listNumber].SetActive(true);
+                listNumber += 1;
+
+                CurrentJester.SetActive(false);
+                JesterList[4].SetActive(true);
+                CurrentJester = JesterList[4];
+
+                BaseKing.SetActive(false);
+                GunKing.SetActive(true);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && gameStarted)
+        {
+            if (NumberList[listNumber] == 2)
+            {
+                CorrectArrowList[listNumber].SetActive(true);
+                listNumber += 1;
+
+                CurrentJester.SetActive(false);
+                JesterList[2].SetActive(true);
+                CurrentJester = JesterList[2];
+
+                BaseKing.SetActive(true);
+                GunKing.SetActive(false);
+
+                totalCorrectArrows += 1;
+            }
+
+            else
+            {
+                IncorrectArrowList[listNumber].SetActive(true);
+                listNumber += 1;
+
+                CurrentJester.SetActive(false);
+                JesterList[4].SetActive(true);
+                CurrentJester = JesterList[4];
+
+                BaseKing.SetActive(false);
+                GunKing.SetActive(true);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) && gameStarted)
+        {
+            if (NumberList[listNumber] == 3)
+            {
+                CorrectArrowList[listNumber].SetActive(true);
+                listNumber += 1;
+
+                CurrentJester.SetActive(false);
+                JesterList[3].SetActive(true);
+                CurrentJester = JesterList[3];
+
+                BaseKing.SetActive(true);
+                GunKing.SetActive(false);
+
+                totalCorrectArrows += 1;
+            }
+
+            else
+            {
+                IncorrectArrowList[listNumber].SetActive(true);
+                listNumber += 1;
+
+                CurrentJester.SetActive(false);
+                JesterList[4].SetActive(true);
+                CurrentJester = JesterList[4];
+
+                BaseKing.SetActive(false);
+                GunKing.SetActive(true);
+            }
+        }
+
+        if (listNumber == 16)
+        {
+            gameStarted = false;
+
+            //player gets one stone/point per correct arrow, minus a penalty of however many seconds after 5
+            wonStones = totalCorrectArrows - (totalSeconds - 5);
+            Debug.Log("Game Over, you win " + wonStones + " stones.");
+
+            foreach (GameObject arrow in ArrowList)
+            {
+                Destroy(arrow);
+            }
+
+            foreach (GameObject currentCorrectArrow in CorrectArrowList)
+            {
+                Destroy(currentCorrectArrow);
+            }
+
+            foreach (GameObject currentIncorrectArrow in IncorrectArrowList)
+            {
+                Destroy(currentIncorrectArrow);
+            }
+        }
+    }
+
+    IEnumerator GameTimer()
         {
             while (gameStarted)
             {
@@ -444,5 +446,5 @@ public class GameManager : MonoBehaviour
             }
         }*/
 
-    }
+    
 }
