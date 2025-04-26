@@ -3031,8 +3031,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18.79181, y: 118}
-  m_SizeDelta: {x: 1772.9324, y: 816.6926}
+  m_AnchoredPosition: {x: 18.79181, y: -1607}
+  m_SizeDelta: {x: 1772.9324, y: 2225.1501}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1958092118
 MonoBehaviour:
@@ -3055,8 +3055,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: cf741e73e60944c7fac2fa2dbea8bfe7, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: ca95b95a32520418a906d62dd9469b29, type: 3}
+    m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3067,10 +3067,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Stone The Peasant
-
-
-'
+  m_Text: "Stone The Peasant\n\n\n\nNicholas\r Daskalovski\n---\nProgrammer\r\n2D
+    Asset Development\r\nUI Artist\r\nMenu Graphics\r\n\r\n\nSamara\r Gracias\n---\nProgrammer\r\n2D
+    Asset Development\r\nUI Artist\r\nMenu Graphics\r\n\r\n\nBen Richardson\r\n---\nProgrammer\r\nScrum
+    Master\r\nUI Artist\r\n\r\n\nAlice\r Bolitho\n---\nProgrammer\r\n2D Asset Development\r\n3D
+    Asset Development\r\nUI Artist\r\n\r\n\nSpecial Mentions\r\n\r\nAudioCoffee\r\n---\nTravelers
+    Tales - Dodge it Like it\u2019s Hot! Soundtrack\r\n\r\n\nGiulio Fazio\r\n---\nDance
+    of Devils - Medieval Mayhem Soundtrack\r\n\r\n\nKevin MacLeod\r\n---\nAchaidh
+    Cheide - Medieval Mayhem Soundtrack\r\n\r\n\r\n\nDedicated to Scott Neely \r\nThanks
+    Scott :)\r\n\n"
 --- !u!222 &1958092119
 CanvasRenderer:
   m_ObjectHideFlags: 0
