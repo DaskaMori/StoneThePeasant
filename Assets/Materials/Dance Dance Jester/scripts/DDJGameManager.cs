@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject OpeningScreen;
+    public GameObject InstructionText;
 
     public GameObject upArrow;
     public GameObject downArrow;
@@ -51,7 +52,8 @@ public class GameManager : MonoBehaviour
     public int directionNumber; //randomly generated number between 1 and 4 for directional arrows
     public int listNumber = 0; //number that increases to progress through the list of arrows
 
-    public bool gameStarted = false;
+    public bool timerActive = false;
+    public bool gameStarted;
     public int totalSeconds;
     public int totalCorrectArrows = 0;
     public int wonStones;
@@ -209,7 +211,7 @@ public class GameManager : MonoBehaviour
             gameStarted = false;
 
             //player gets one stone/point per correct arrow, minus a penalty of however many seconds after 5
-            wonStones = (totalCorrectArrows - (totalSeconds - 5))/2;
+            wonStones = totalCorrectArrows - (totalSeconds - 5);
             Debug.Log("Game Over, you win " + wonStones + " stones.");
 
             foreach (GameObject arrow in ArrowList)
@@ -230,219 +232,220 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator GameTimer()
-    {
-        while (gameStarted)
         {
-            yield return new WaitForSeconds(1f);
-            totalSeconds += 1;
-        }
-    }
-
-    public void ArrowSetup()
-    {
-
-        //creates a list of arrow dirrections
-        allArrowDirections = new List<GameObject> { upArrow, downArrow, leftArrow, rightArrow };
-        LitArrowDirections = new List<GameObject> { upLitArrow, downLitArrow, leftLitArrow, rightLitArrow };
-        CorrectArrowDirections = new List<GameObject> { upCorrectArrow, downCorrectArrow, leftCorrectArrow, rightCorrectArrow };
-        IncorrectArrowDirections = new List<GameObject> { upIncorrectArrow, downIncorrectArrow, leftIncorrectArrow, rightIncorrectArrow };
-
-        //ArrowLocations list holds empty objects in the locations of the 16 arrows. for every object in the list, instantiates a random arrow in that location and adds it to a list)
-        foreach (Transform arrowPlacement in ArrowLocations)
-        {
-            //generates a random number between 0 and 3 for each number and stores it inside directionNumber, and that inside NumberList. 0=up, 1=down, 2=left, 3=right.
-            directionNumber = Random.Range(0, 4);
-            NumberList.Add(directionNumber);
-
-            //instantiates each arrow in the corresponding location and adds it to a list
-            GameObject arrow = Instantiate((allArrowDirections[directionNumber]), arrowPlacement.position, transform.rotation);
-            ArrowList.Add(arrow);
-
-            currentCorrectArrow = Instantiate((CorrectArrowDirections[directionNumber]), arrow.transform.position, transform.rotation);
-            currentCorrectArrow.SetActive(false);
-            CorrectArrowList.Add(currentCorrectArrow);
-
-            currentIncorrectArrow = Instantiate((IncorrectArrowDirections[directionNumber]), arrow.transform.position, transform.rotation);
-            currentIncorrectArrow.SetActive(false);
-            IncorrectArrowList.Add(currentIncorrectArrow);
-        }
-    }
-
-
-    //below is the script for the attempted timed arrow function, which was cut once rescoped
-
-    //runs the main game loop
-    /*IEnumerator GameFunction()
-    {
-        //goes through the list of each instantiated arrow, checks the number in the direction list and the corresponding dirrection, and instantiates the corresponding lit arrow on top of it
-        foreach (GameObject arrow in ArrowList)
-        {
-            listNumber += 1;
-
-            if (listNumber > ArrowList.Count)
+            while (gameStarted)
             {
-                listNumber = 0;
-            }
-
-            if (NumberList[listNumber] == 0)
-            {
-                LitArrowList[listNumber].SetActive(true);
-
-                timerActive = true;
-                StartCoroutine(WaitingOnInput());
-                yield return new WaitForSeconds(0.5f);
-            }
-
-            if (NumberList[listNumber] == 1)
-            {
-                LitArrowList[listNumber].SetActive(true);
-
-                timerActive = true;
-                StartCoroutine(WaitingOnInput());
-                yield return new WaitForSeconds(0.5f);
-            }
-
-            if (NumberList[listNumber] == 2)
-            {
-                LitArrowList[listNumber].SetActive(true);
-
-                timerActive = true;
-                StartCoroutine(WaitingOnInput());
-                yield return new WaitForSeconds(0.5f);
-            }
-
-            if (NumberList[listNumber] == 3)
-            {
-                LitArrowList[listNumber].SetActive(true);
-
-                timerActive = true;
-                StartCoroutine(WaitingOnInput());
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(1f);
+                totalSeconds += 1;
             }
         }
 
-    }
-
-    //a timer that waits for half a second before returning the "timerActive" boolean as false
-    IEnumerator HalfSecondTimer()
-    {
-        yield return new WaitForSeconds(0.5f);
-        timerActive = false;
-        yield break;
-    }
-
-
-    IEnumerator WaitingOnInput()
-    {
-        StartCoroutine(HalfSecondTimer()); //starts the 0.5 second countdown
-
-        while (timerActive)
+        void ArrowSetup()
         {
-            //if the current arrow is up
-            if (NumberList[listNumber] == 0)
+
+            //creates a list of arrow dirrections
+            allArrowDirections = new List<GameObject> { upArrow, downArrow, leftArrow, rightArrow };
+            LitArrowDirections = new List<GameObject> { upLitArrow, downLitArrow, leftLitArrow, rightLitArrow };
+            CorrectArrowDirections = new List<GameObject> { upCorrectArrow, downCorrectArrow, leftCorrectArrow, rightCorrectArrow };
+            IncorrectArrowDirections = new List<GameObject> { upIncorrectArrow, downIncorrectArrow, leftIncorrectArrow, rightIncorrectArrow };
+
+            //ArrowLocations list holds empty objects in the locations of the 16 arrows. for every object in the list, instantiates a random arrow in that location and adds it to a list)
+            foreach (Transform arrowPlacement in ArrowLocations)
             {
-                //if the up key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with correct arrow sprite
-                if (timerActive && Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    LitArrowList[listNumber].SetActive(false);
-                    CorrectArrowList[listNumber].SetActive(true);
+                //generates a random number between 0 and 3 for each number and stores it inside directionNumber, and that inside NumberList. 0=up, 1=down, 2=left, 3=right.
+                directionNumber = Random.Range(0, 4);
+                NumberList.Add(directionNumber);
 
-                    timerActive = false;
-                    yield break;
-                }
+                //instantiates each arrow in the corresponding location and adds it to a list
+                GameObject arrow = Instantiate((allArrowDirections[directionNumber]), arrowPlacement.position, transform.rotation);
+                ArrowList.Add(arrow);
 
-                //if any other key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with incorrect arrow sprite
-                if (timerActive && Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    LitArrowList[listNumber].SetActive(false);
-                    IncorrectArrowList[listNumber].SetActive(true);
+                currentCorrectArrow = Instantiate((CorrectArrowDirections[directionNumber]), arrow.transform.position, transform.rotation);
+                currentCorrectArrow.SetActive(false);
+                CorrectArrowList.Add(currentCorrectArrow);
 
-                    timerActive = false;
-                    yield break;
-                }
-
-            }
-
-            //if the current arrow is down
-            if (NumberList[listNumber] == 1)
-            {
-                //if the down key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with correct arrow sprite
-                if (timerActive && Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    LitArrowList[listNumber].SetActive(false);
-                    CorrectArrowList[listNumber].SetActive(true);
-
-                    timerActive = false;
-                    yield break;
-                }
-
-                //if any other key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with incorrect arrow sprite
-                if (timerActive && Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    LitArrowList[listNumber].SetActive(false);
-                    IncorrectArrowList[listNumber].SetActive(true);
-
-                    timerActive = false;
-                    yield break;
-                }
-            }
-
-            //if the current arrow is left
-            if (NumberList[listNumber] == 2)
-            {
-                //if the left key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with correct arrow sprite
-                if (timerActive && Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    LitArrowList[listNumber].SetActive(false);
-                    CorrectArrowList[listNumber].SetActive(true);
-
-                    timerActive = false;
-                    yield break;
-                }
-
-                //if any other key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with incorrect arrow sprite
-                if (timerActive && Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    LitArrowList[listNumber].SetActive(false);
-                    IncorrectArrowList[listNumber].SetActive(true);
-
-                    timerActive = false;
-                    yield break;
-                }
-            }
-
-            //if the current arrow is right
-            if (NumberList[listNumber] == 3)
-            {
-                //if the up key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with correct arrow sprite
-                if (timerActive && Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    LitArrowList[listNumber].SetActive(false);
-                    CorrectArrowList[listNumber].SetActive(true);
-
-                    timerActive = false;
-                    yield break;
-                }
-
-                //if any other key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with incorrect arrow sprite
-                if (timerActive && Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    LitArrowList[listNumber].SetActive(false);
-                    IncorrectArrowList[listNumber].SetActive(true);
-
-                    timerActive = false;
-                    yield break;
-                }
+                currentIncorrectArrow = Instantiate((IncorrectArrowDirections[directionNumber]), arrow.transform.position, transform.rotation);
+                currentIncorrectArrow.SetActive(false);
+                IncorrectArrowList.Add(currentIncorrectArrow);
             }
         }
 
-        //if the time elapses, replace the lit sprite with the incorrect sprite
-        if (timerActive == false)
+
+        //below is the script for the attempted timed arrow function, which was cut once rescoped
+
+        //runs the main game loop
+        /*IEnumerator GameFunction()
         {
-            LitArrowList[listNumber].SetActive(false);
-            IncorrectArrowList[listNumber].SetActive(true);
+            //goes through the list of each instantiated arrow, checks the number in the direction list and the corresponding dirrection, and instantiates the corresponding lit arrow on top of it
+            foreach (GameObject arrow in ArrowList)
+            {
+                listNumber += 1;
+
+                if (listNumber > ArrowList.Count)
+                {
+                    listNumber = 0;
+                }
+
+                if (NumberList[listNumber] == 0)
+                {
+                    LitArrowList[listNumber].SetActive(true);
+
+                    timerActive = true;
+                    StartCoroutine(WaitingOnInput());
+                    yield return new WaitForSeconds(0.5f);
+                }
+
+                if (NumberList[listNumber] == 1)
+                {
+                    LitArrowList[listNumber].SetActive(true);
+
+                    timerActive = true;
+                    StartCoroutine(WaitingOnInput());
+                    yield return new WaitForSeconds(0.5f);
+                }
+
+                if (NumberList[listNumber] == 2)
+                {
+                    LitArrowList[listNumber].SetActive(true);
+
+                    timerActive = true;
+                    StartCoroutine(WaitingOnInput());
+                    yield return new WaitForSeconds(0.5f);
+                }
+
+                if (NumberList[listNumber] == 3)
+                {
+                    LitArrowList[listNumber].SetActive(true);
+
+                    timerActive = true;
+                    StartCoroutine(WaitingOnInput());
+                    yield return new WaitForSeconds(0.5f);
+                }
+            }
+
+        }
+
+        //a timer that waits for half a second before returning the "timerActive" boolean as false
+        IEnumerator HalfSecondTimer()
+        {
+            yield return new WaitForSeconds(0.5f);
+            timerActive = false;
             yield break;
         }
-    }*/
 
+
+        IEnumerator WaitingOnInput()
+        {
+            StartCoroutine(HalfSecondTimer()); //starts the 0.5 second countdown
+
+            while (timerActive)
+            {
+                //if the current arrow is up
+                if (NumberList[listNumber] == 0)
+                {
+                    //if the up key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with correct arrow sprite
+                    if (timerActive && Input.GetKeyDown(KeyCode.UpArrow))
+                    {
+                        LitArrowList[listNumber].SetActive(false);
+                        CorrectArrowList[listNumber].SetActive(true);
+
+                        timerActive = false;
+                        yield break;
+                    }
+
+                    //if any other key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with incorrect arrow sprite
+                    if (timerActive && Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+                    {
+                        LitArrowList[listNumber].SetActive(false);
+                        IncorrectArrowList[listNumber].SetActive(true);
+
+                        timerActive = false;
+                        yield break;
+                    }
+
+                }
+
+                //if the current arrow is down
+                if (NumberList[listNumber] == 1)
+                {
+                    //if the down key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with correct arrow sprite
+                    if (timerActive && Input.GetKeyDown(KeyCode.DownArrow))
+                    {
+                        LitArrowList[listNumber].SetActive(false);
+                        CorrectArrowList[listNumber].SetActive(true);
+
+                        timerActive = false;
+                        yield break;
+                    }
+
+                    //if any other key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with incorrect arrow sprite
+                    if (timerActive && Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+                    {
+                        LitArrowList[listNumber].SetActive(false);
+                        IncorrectArrowList[listNumber].SetActive(true);
+
+                        timerActive = false;
+                        yield break;
+                    }
+                }
+
+                //if the current arrow is left
+                if (NumberList[listNumber] == 2)
+                {
+                    //if the left key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with correct arrow sprite
+                    if (timerActive && Input.GetKeyDown(KeyCode.LeftArrow))
+                    {
+                        LitArrowList[listNumber].SetActive(false);
+                        CorrectArrowList[listNumber].SetActive(true);
+
+                        timerActive = false;
+                        yield break;
+                    }
+
+                    //if any other key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with incorrect arrow sprite
+                    if (timerActive && Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+                    {
+                        LitArrowList[listNumber].SetActive(false);
+                        IncorrectArrowList[listNumber].SetActive(true);
+
+                        timerActive = false;
+                        yield break;
+                    }
+                }
+
+                //if the current arrow is right
+                if (NumberList[listNumber] == 3)
+                {
+                    //if the up key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with correct arrow sprite
+                    if (timerActive && Input.GetKeyDown(KeyCode.RightArrow))
+                    {
+                        LitArrowList[listNumber].SetActive(false);
+                        CorrectArrowList[listNumber].SetActive(true);
+
+                        timerActive = false;
+                        yield break;
+                    }
+
+                    //if any other key is pressed before "timerActive" is returned as false, replace the lit arrow sprite with incorrect arrow sprite
+                    if (timerActive && Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+                    {
+                        LitArrowList[listNumber].SetActive(false);
+                        IncorrectArrowList[listNumber].SetActive(true);
+
+                        timerActive = false;
+                        yield break;
+                    }
+                }
+            }
+
+            //if the time elapses, replace the lit sprite with the incorrect sprite
+            if (timerActive == false)
+            {
+                LitArrowList[listNumber].SetActive(false);
+                IncorrectArrowList[listNumber].SetActive(true);
+                yield break;
+            }
+        }*/
+
+    
 }
