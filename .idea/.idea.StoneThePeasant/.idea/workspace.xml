@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eed18e59-d1e6-4eb2-82e8-63f9007db11d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Main Menu/Exit.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Main Menu/Exit.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StoneThePeasant/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StoneThePeasant/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Stone the Peasant.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Stone the Peasant.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Main Menu/GameScoreManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Main Menu/GameScoreManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/PlayerMovementAndAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/PlayerMovementAndAttack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main Menu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Main Menu/CreditsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Main Menu/CreditsManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +22,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Main Menu/CreditsManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Main Menu/Exit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/ReturnButton.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -33,7 +36,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "STPDevStage2",
+    "git-widget-placeholder": "Devstage4",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -43,6 +46,14 @@
   }
 }]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../STPBuild2\Stone the Peasant.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Nicholas\Documents\ManagingDigitalProjects\StoneThePeasantBuild" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.56f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\Nicholas\Documents\ManagingDigitalProjects\StoneThePeasant -debugCodeOptimization" />

@@ -56,5 +56,10 @@ namespace Main_Menu
             yield return new WaitForSeconds(pauseAtEnd);
             ReturnToMenu();
         }
+        
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }
