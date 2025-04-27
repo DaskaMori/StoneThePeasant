@@ -489,6 +489,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 542926088}
+  - component: {fileID: 542926091}
+  - component: {fileID: 542926090}
+  - component: {fileID: 542926089}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -513,6 +516,62 @@ Transform:
   - {fileID: 1785330}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &542926089
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542926087}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &542926090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542926087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724217330188f8e498f68f2e6f4106d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivityX: 2
+  sensitivityY: 2
+  minimumY: -60
+  maximumY: 60
+--- !u!114 &542926091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542926087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ecdd08a45301254ba01dda4e7c35faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stonePrefab: {fileID: 2499948221083517956, guid: cdb9898588d06b24d84e22c10d92d138, type: 3}
 --- !u!1 &575659805
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,6 +582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 575659806}
   - component: {fileID: 575659807}
+  - component: {fileID: 575659808}
   m_Layer: 0
   m_Name: PeasantManager
   m_TagString: Untagged
@@ -558,6 +618,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16f8edcacd9bfb41a58c1ca75802362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &575659808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575659805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4061a79b3104044fbfe2b6ba81b0083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  peasantHealth: 50
+  peasantPhase2: 0
+  player: {fileID: 542926087}
+  peasantPlane: {fileID: 1665970181}
 --- !u!1 &576957462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,7 +1627,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1557121195}
-  - component: {fileID: 1557121194}
   m_Layer: 0
   m_Name: Umpire
   m_TagString: Untagged
@@ -1559,18 +1634,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1557121194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557121193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3125ed97e5615c440904250c167643e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1557121195
 Transform:
   m_ObjectHideFlags: 0
@@ -2430,6 +2493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ecdd08a45301254ba01dda4e7c35faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stonePrefab: {fileID: 0}
 --- !u!114 &2127886791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2472,6 +2536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stoneScore: 0
+  scoreDisplay: 0
 --- !u!4 &2138564827
 Transform:
   m_ObjectHideFlags: 0
