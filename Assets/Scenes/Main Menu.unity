@@ -3067,15 +3067,16 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Stone The Peasant\n\n\n\nNicholas\r Daskalovski\n---\nProgrammer\r\n2D
+  m_Text: "Stone The Peasant\n\n\n\nNicholas\r Daskalovski\n---\nActing Project Lead\nProgrammer\r\n2D
     Asset Development\r\nUI Artist\r\nMenu Graphics\r\n\r\n\nSamara\r Gracias\n---\nProgrammer\r\n2D
     Asset Development\r\nUI Artist\r\nMenu Graphics\r\n\r\n\nBen Richardson\r\n---\nProgrammer\r\nScrum
     Master\r\nUI Artist\r\n\r\n\nAlice\r Bolitho\n---\nProgrammer\r\n2D Asset Development\r\n3D
     Asset Development\r\nUI Artist\r\n\r\n\nSpecial Mentions\r\n\r\nAudioCoffee\r\n---\nTravelers
     Tales - Dodge it Like it\u2019s Hot! Soundtrack\r\n\r\n\nGiulio Fazio\r\n---\nDance
     of Devils - Medieval Mayhem Soundtrack\r\n\r\n\nKevin MacLeod\r\n---\nAchaidh
-    Cheide - Medieval Mayhem Soundtrack\r\n\r\n\r\n\nDedicated to Scott Neely \r\nThanks
-    Scott :)\r\n\n"
+    Cheide - Medieval Mayhem Soundtrack\r\n\r\n\nChimimin\n\r---\nA Goofy and Silly
+    Medieval Song - Dance Dance Jester Soundtrack\n\n\n\nDedicated to Scott Neely
+    \r\nThanks Scott :)\r\n\n"
 --- !u!222 &1958092119
 CanvasRenderer:
   m_ObjectHideFlags: 0
