@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -55,7 +56,6 @@ public class GameManager : MonoBehaviour
     public int directionNumber; //randomly generated number between 1 and 4 for directional arrows
     public int listNumber = 0; //number that increases to progress through the list of arrows
 
-    public bool timerActive = false;
     public bool gameStarted;
     public bool gameOver = false;
     public int totalSeconds;
@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
     public int wonStones;
 
     public Button StartButton;
+    public Button ReturnButton;
+
 
     public List<GameObject> JesterList;
     public GameObject CurrentJester;
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
         //creates a list of arrow dirrections
         ArrowSetup();
         StartButton.onClick.AddListener(StartGame);
+        ReturnButton.onClick.AddListener(ExitGame);
     }
     //starts the main game function when space is pressed
     void Update()
@@ -214,9 +217,6 @@ public class GameManager : MonoBehaviour
             gameStarted = false;
             EndGame();
         }
-
-        Debug.Log("Game started is " + gameStarted);
-        Debug.Log("Total seconds = " + totalSeconds);
     }
 
     IEnumerator GameTimer()
@@ -242,6 +242,10 @@ public class GameManager : MonoBehaviour
     {
         //player gets one stone/point per 2 correct arrows, minus a penalty half the total time
         wonStones = totalCorrectArrows/2 - (totalSeconds/2);
+        if (wonStones < 0)
+        {
+            wonStones = 0;
+        }
 
         gameOver = true;
 
@@ -254,7 +258,9 @@ public class GameManager : MonoBehaviour
 
     void ExitGame()
     {
-        foreach (GameObject arrow in ArrowList)
+
+        SceneManager.LoadScene(0);
+        /*foreach (GameObject arrow in ArrowList)
         {
             Destroy(arrow);
         }
@@ -268,6 +274,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(currentIncorrectArrow);
         }
+
+        gameOver = false;
+        totalCorrectArrows = 0;*/
+
     }
 
     void ArrowSetup()
