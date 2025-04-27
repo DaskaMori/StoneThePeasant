@@ -43,7 +43,7 @@ public class GameScoreManager : MonoBehaviour
 
     public int ThrewStone()
     { 
-        currentScore = -1;
+        currentScore --;
         return currentScore;
     } //remove 1 from the score if the player threw one of their stones and return the current score to make sure the player doesnt somehow throw more stones than htey have
 }
