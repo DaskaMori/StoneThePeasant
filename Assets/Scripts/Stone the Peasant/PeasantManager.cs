@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
+using TMPro;
 using UnityEngine;
+
 
 public class PeasantManager : MonoBehaviour
 {
     public int peasantHealth = 50;
     public bool peasantPhase2;
-
+    public TextMeshProUGUI peasantHealthText;
     public GameObject player;
     public GameObject peasantPlane;
     // Start is called before the first frame update
@@ -22,11 +25,11 @@ public class PeasantManager : MonoBehaviour
         Vector3 eulerAngles = transform.eulerAngles;
         eulerAngles.x = 0; // Lock X rotation
         transform.eulerAngles = eulerAngles;
-        if (peasantHealth < 26)
+        if (peasantHealth < 1)
         {
-            peasantPhase2 = true;
-            
+            Destroy(peasantPlane);
         }
+        peasantHealthText.text = "Peasant Health: " + peasantHealth.ToString();
     }
 
     public void PeasantPhase2()

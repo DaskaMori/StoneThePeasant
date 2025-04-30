@@ -10,32 +10,39 @@ public class ThrownStoneManager : MonoBehaviour
     [SerializeField] private Material stoneMaterialTwo;
     [SerializeField] private Material stoneMaterialThree;
     private int chosenTexture;
+    private Vector3 moveDirection;
+    [SerializeField] private float speed = 10f;
     
     // Start is called before the first frame update
     void Start()
     {
-        chosenTexture = Random.Range(0, 2);
-        if (chosenTexture == 0)
-        {
-            gameObject.GetComponent<Renderer>().material = stoneMaterialOne;
-        }
+        
+        transform.SetParent(null);
+        if (Camera.main != null) moveDirection = Camera.main.transform.forward;
 
-        if (chosenTexture == 1)
-        {
-            gameObject.GetComponent<Renderer>().material = stoneMaterialTwo;
-        }
-
-        if (chosenTexture == 2)
-        {
-            gameObject.GetComponent<Renderer>().material = stoneMaterialThree;
-        }
+        player = GameObject.FindGameObjectWithTag("Player");
+        
+        StartCoroutine(MoveContinuously());
+        StartCoroutine(StoneDespawn());
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+
+    IEnumerator StoneDespawn()
     {
-        transform.LookAt(player.transform.position);
-        Vector3 eulerAngles = transform.eulerAngles;
-        transform.eulerAngles = eulerAngles;
+        yield return new WaitForSeconds(10f);
+        Destroy(gameObject);
+    }
+    
+    IEnumerator MoveContinuously()
+    {
+        while(true)
+        {
+            Debug.Log("Current position: " + transform.position);
+            // Move the object in the stored direction
+            transform.position += moveDirection * (speed * Time.deltaTime);
+            yield return null; // Wait for next frame
+        }
     }
 }

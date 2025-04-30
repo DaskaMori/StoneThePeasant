@@ -6,6 +6,8 @@ public class PlayerMovementAndAttack : MonoBehaviour
 {
 
     [SerializeField] private GameObject stonePrefab;
+    private int currentScore;
+    private bool canAttack = true;
 
     // Update is called once per frame
     void Update()
@@ -13,7 +15,13 @@ public class PlayerMovementAndAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Instantiate(stonePrefab, transform.position, Quaternion.identity);
+            currentScore = GameScoreManager.Instance.GetStoneScore();
+            if (currentScore > 0 && canAttack)
+            {
+             //   StartCoroutine(ThrowCooldown());
+                GameScoreManager.Instance.ThrewStone();
+                Instantiate(stonePrefab, transform.position, Quaternion.identity);
+            }
         }
 
         if (Input.GetKey(KeyCode.W))
@@ -35,9 +43,13 @@ public class PlayerMovementAndAttack : MonoBehaviour
         {
             gameObject.transform.Translate(Vector3.right * Time.deltaTime * 5);
         }
-        
-
-
-        
     }
+
+    IEnumerator ThrowCooldown()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(1f);
+        canAttack = true;
+    }
+    
 }
