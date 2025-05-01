@@ -611,6 +611,7 @@ MonoBehaviour:
   peasantHealthText: {fileID: 0}
   player: {fileID: 542926087}
   peasantPlane: {fileID: 1970133186}
+  peasantSprite2: []
   self: {fileID: 0}
 --- !u!114 &575659809
 MonoBehaviour:
@@ -927,6 +928,8 @@ MonoBehaviour:
   peasantHealthText: {fileID: 1702736289}
   player: {fileID: 542926087}
   peasantPlane: {fileID: 1970133186}
+  peasantSprite2:
+  - {fileID: 21300000, guid: d290fe2cd34f60044abb8929e4546283, type: 3}
   self: {fileID: 575659805}
 --- !u!1 &746843782
 GameObject:

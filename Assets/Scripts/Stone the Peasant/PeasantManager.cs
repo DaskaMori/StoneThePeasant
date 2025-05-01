@@ -14,6 +14,7 @@ public class PeasantManager : MonoBehaviour
     public GameObject player;
     public GameObject peasantPlane;
     private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite[] peasantSprite2;
 
     [SerializeField] private GameObject self;
     // Start is called before the first frame update
@@ -32,7 +33,8 @@ public class PeasantManager : MonoBehaviour
 
         if (peasantHealth < 26 && !peasantPhase2)
         {
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            SpriteRenderer spriteManage = peasantPlane.GetComponent<SpriteRenderer>();
+            spriteManage.sprite = peasantSprite2[0];
             audioManager.ChangeAudio();
             peasantPhase2 = true;
         }

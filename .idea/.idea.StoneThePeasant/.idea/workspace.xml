@@ -6,12 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="eed18e59-d1e6-4eb2-82e8-63f9007db11d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StoneThePeasant/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StoneThePeasant/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Stone the Peasant/ThrownStone 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Stone the Peasant/ThrownStone 1.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Stone the Peasant.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Stone the Peasant.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/PeasantHitDetection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/PeasantHitDetection.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/PeasantManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/PeasantManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/PlayerMovementAndAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/PlayerMovementAndAttack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/ThrownStoneManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/ThrownStoneManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/Stone The Peasant! phase 2.wav" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/Stone The Peasant! phase 2.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/Stone The Peasant! phase 2.wav.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stone the Peasant/Stone The Peasant! phase 2.wav.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +43,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "peasantstoning",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -122,7 +120,7 @@
       <workItem from="1745756388916" duration="931000" />
       <workItem from="1746013586885" duration="204000" />
       <workItem from="1746013886903" duration="5770000" />
-      <workItem from="1746039324577" duration="9958000" />
+      <workItem from="1746039324577" duration="11055000" />
     </task>
     <servers />
   </component>
