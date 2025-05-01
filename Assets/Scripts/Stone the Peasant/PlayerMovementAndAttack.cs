@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovementAndAttack : MonoBehaviour
 {
-
+    [SerializeField] private GameObject stonelessPopup;
     [SerializeField] private GameObject stonePrefab;
     private int currentScore;
     private bool canAttack = true;
@@ -21,6 +21,10 @@ public class PlayerMovementAndAttack : MonoBehaviour
              //   StartCoroutine(ThrowCooldown());
                 GameScoreManager.Instance.ThrewStone();
                 Instantiate(stonePrefab, transform.position, Quaternion.identity);
+            }
+            else
+            {
+                StartCoroutine(Stoneless());
             }
         }
 
@@ -50,6 +54,13 @@ public class PlayerMovementAndAttack : MonoBehaviour
         canAttack = false;
         yield return new WaitForSeconds(1f);
         canAttack = true;
+    }
+
+    IEnumerator Stoneless()
+    {
+        stonelessPopup.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        stonelessPopup.SetActive(false);
     }
     
 }

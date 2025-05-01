@@ -7,11 +7,15 @@ using UnityEngine;
 
 public class PeasantManager : MonoBehaviour
 {
+    public AudioManager audioManager;
     public int peasantHealth = 50;
     public bool peasantPhase2;
     public TextMeshProUGUI peasantHealthText;
     public GameObject player;
     public GameObject peasantPlane;
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField] private GameObject self;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,15 +29,20 @@ public class PeasantManager : MonoBehaviour
         Vector3 eulerAngles = transform.eulerAngles;
         eulerAngles.x = 0; // Lock X rotation
         transform.eulerAngles = eulerAngles;
+
+        if (peasantHealth < 26 && !peasantPhase2)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            audioManager.ChangeAudio();
+            peasantPhase2 = true;
+        }
+        
         if (peasantHealth < 1)
         {
-            Destroy(peasantPlane);
+            Destroy(self);
         }
         peasantHealthText.text = "Peasant Health: " + peasantHealth.ToString();
     }
 
-    public void PeasantPhase2()
-    {
-        // phase transition
-    }
+
 }

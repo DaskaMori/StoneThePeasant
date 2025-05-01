@@ -39,7 +39,6 @@ public class ThrownStoneManager : MonoBehaviour
     {
         while(true)
         {
-            Debug.Log("Current position: " + transform.position);
             // Move the object in the stored direction
             transform.position += moveDirection * (speed * Time.deltaTime);
             yield return null; // Wait for next frame

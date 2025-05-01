@@ -10,7 +10,9 @@ public class PeasantHitDetection : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Stone"))
         {
+            Debug.Log("stone: " + collision.gameObject);
             peasantManager.peasantHealth--;
+            Destroy(collision.gameObject);
         }
     }
 }
